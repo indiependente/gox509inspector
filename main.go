@@ -17,6 +17,6 @@ func main() {
 		fmt.Fprintln(os.Stdout, err)
 	}
 
-	bytes := inspector.PrintX509Cert(c)
+	bytes := inspector.GetQuickInfo(c)
 	fmt.Print(string(bytes))
 }
