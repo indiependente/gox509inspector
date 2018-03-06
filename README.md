@@ -14,7 +14,7 @@ func Parsex509Cert(r io.Reader) (*x509.Certificate, error)
 
 ```go
 /*
-PrintX509Cert returns the certificate's most useful info as a byte array
+GetQuickInfo returns the certificate's most useful info as a byte array
 
 Version             int
 SerialNumber        *big.Int
@@ -23,7 +23,7 @@ Subject             pkix.Name
 NotBefore, NotAfter time.Time // Validity bounds.
 KeyUsage            KeyUsage
 */
-func PrintX509Cert(c *x509.Certificate) []byte
+func GetQuickInfo(c *x509.Certificate) []byte
 ```
 
 ### Example usage
@@ -47,7 +47,7 @@ func main() {
 		fmt.Fprintln(os.Stdout, err)
 	}
 
-	bytes := inspector.PrintX509Cert(c)
+	bytes := inspector.GetQuickInfo(c)
 	fmt.Print(string(bytes))
 }
 
