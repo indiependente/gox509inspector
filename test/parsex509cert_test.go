@@ -2,11 +2,12 @@ package test
 
 import (
 	"fmt"
-	"gox509inspector/inspector"
 	"math/big"
 	"os"
 	"testing"
 	"time"
+
+	"github.com/indiependente/gox509inspector/inspector"
 )
 
 func TestParsex509Cert(t *testing.T) {

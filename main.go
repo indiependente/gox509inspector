@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"gox509inspector/inspector"
 	"os"
+
+	"github.com/indiependente/gox509inspector/inspector"
 )
 
 func main() {
