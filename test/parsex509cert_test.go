@@ -19,10 +19,10 @@ func TestParsex509Cert(t *testing.T) {
 
 	c, err := inspector.Parsex509Cert(f)
 	if c == nil {
-		t.Errorf("error during test certificate parsing: %v", err)
+		t.Fatalf("error during test certificate parsing: %v", err)
 	}
 	if err != nil {
-		t.Errorf("warning during test certificate parsing: %v", err)
+		t.Fatalf("warning during test certificate parsing: %v", err)
 	}
 
 	layout := "2006-01-02 15:04:05 -0700 MST"

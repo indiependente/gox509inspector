@@ -16,22 +16,21 @@ func Parsex509Cert(r io.Reader) (*x509.Certificate, error) {
 	var err error
 	pemData, err := ioutil.ReadAll(r)
 	if err != nil {
-		return nil, fmt.Errorf("error while reading the certificate: %v", err)
+		return nil, fmt.Errorf("error while reading the certificate: %w", err)
 	}
 
-	rest := pemData
 	var block *pem.Block
-	block, rest = pem.Decode(pemData)
+	block, rest := pem.Decode(pemData)
 	if block == nil {
 		return nil, fmt.Errorf("error: PEM not parsed")
 	}
 	if len(rest) != 0 {
-		err = fmt.Errorf("warning: reminder data\n%v", rest)
+		return nil, fmt.Errorf("warning: reminder data\n%v", rest)
 	}
 
 	c, err := x509.ParseCertificate(block.Bytes)
 	if err != nil {
-		return nil, fmt.Errorf("error while parsing the certificate: %v", err)
+		return nil, fmt.Errorf("error while parsing the certificate: %w", err)
 	}
 	return c, err
 }
