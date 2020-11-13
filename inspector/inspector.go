@@ -50,6 +50,7 @@ func GetQuickInfo(c *x509.Certificate) []byte {
 	info = append(info, []byte(fmt.Sprintf("SerialNumber:\t%d\n", c.SerialNumber))...)
 	info = append(info, []byte(fmt.Sprintf("Issuer:\t\t%s\n", c.Issuer))...)
 	info = append(info, []byte(fmt.Sprintf("Subject:\t%s\n", c.Subject))...)
+	info = append(info, []byte(fmt.Sprintf("DNS Names:\t%s\n", c.DNSNames))...)
 	info = append(info, []byte(fmt.Sprintf("Valid from:\t%s\n", c.NotBefore.Local()))...)
 	info = append(info, []byte(fmt.Sprintf("Valid to:\t%s\n", c.NotAfter.Local()))...)
 	return info
