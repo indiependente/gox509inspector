@@ -1,3 +1,6 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/indiependente/gox509inspector)](https://goreportcard.com/report/github.com/indiependente/gox509inspector)
+<a href='https://github.com/jpoles1/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-0%25-brightgreen.svg?longCache=true&style=flat)</a>
+[![Workflow Status](https://github.com/indiependente/gox509inspector/workflows/lint-test/badge.svg)](https://github.com/indiependente/gox509inspector/actions)
 # gox509inspector
 Go tool to inspect x.509 certificates in PEM format
 
