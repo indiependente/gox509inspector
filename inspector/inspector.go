@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"net"
+	"strings"
 )
 
 /*Parsex509Cert takes an io.Reader in input and returns an x509 certificate and nil
@@ -50,8 +52,23 @@ func GetQuickInfo(c *x509.Certificate) []byte {
 	info = append(info, []byte(fmt.Sprintf("SerialNumber:\t%d\n", c.SerialNumber))...)
 	info = append(info, []byte(fmt.Sprintf("Issuer:\t\t%s\n", c.Issuer))...)
 	info = append(info, []byte(fmt.Sprintf("Subject:\t%s\n", c.Subject))...)
-	info = append(info, []byte(fmt.Sprintf("DNS Names:\t%s\n", c.DNSNames))...)
+	info = append(info, []byte(fmt.Sprintf("DNS Names:\t%s\n", strings.Join(c.DNSNames, ",")))...)
+	info = append(info, []byte(fmt.Sprintf("IP Addresses:\t%s\n", joinIPs(c.IPAddresses, ",")))...)
 	info = append(info, []byte(fmt.Sprintf("Valid from:\t%s\n", c.NotBefore.Local()))...)
 	info = append(info, []byte(fmt.Sprintf("Valid to:\t%s\n", c.NotAfter.Local()))...)
 	return info
+}
+
+func joinIPs(ips []net.IP, sep string) string {
+	var ipsNo int
+	if ipsNo = len(ips); ipsNo == 0 {
+		return ""
+	}
+	var sb strings.Builder
+	for _, ip := range ips[:len(ips)-1] {
+		sb.WriteString(ip.To4().String())
+		sb.WriteString(sep)
+	}
+	sb.WriteString(ips[len(ips)-1].To4().String())
+	return sb.String()
 }
